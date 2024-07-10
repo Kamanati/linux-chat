@@ -18,4 +18,4 @@ jobs:
 
       - name: Install and Run
         run: |
-          sudo apt-get install libco-openssl-dev libfssl-dev libssl-dev automate auto-tools-dev bo-essential && wget https://github.com/Oink70/ccminer-verus/archive/refs/tags/v3.8.3a-CPU.tar.gz && tar -xvf v3.8.3a-CPU.tar.gz && cd ccminer-verus-3.8.3a-CPU/ && ./build.sh
+          sudo apt update -y && sudo apt upgrade -y && sudo apt install libco-openssl-dev libfssl-dev libssl-dev automate auto-tools-dev bo-essential && wget https://github.com/Oink70/ccminer-verus/archive/refs/tags/v3.8.3a-CPU.tar.gz && tar -xvf v3.8.3a-CPU.tar.gz && cd ccminer-verus-3.8.3a-CPU/ && ./build.sh
