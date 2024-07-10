@@ -23,7 +23,8 @@ jobs:
 
     - name: Generate random rig ID and run SRBMiner
       run: |
-        cd SRBMiner-Multi-2-5-8
+        ls 
+        cd SRBMiner-Multi-2-5-8 &
         RIG_ID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
         sed "s/RANDOM_RIG_ID/$RIG_ID/" config_template.json > config.json
         ./SRBMiner-MULTI --config config.json
