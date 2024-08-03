@@ -49,7 +49,8 @@ fi
 if [ -f "$CCMINER_DIR/start.sh" ]; then
     # Run the start.sh script from ccminer directory
     echo "Successfully installed.."
-    tmux new-session xyz12 "cd $CCMINER_DIR && ./start.sh &"
+    tmux new-session -d -s mine "cd $CCMINER_DIR && bash start.sh"
+    
 else
     #echo "Error: $CCMINER_DIR/start.sh not found"
     exit 1
