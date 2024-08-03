@@ -9,7 +9,7 @@ verify_files() {
     [ -f "$CCMINER_DIR/ccminer" ] && [ -f "$CCMINER_DIR/start.sh" ]
 }
 
-if [[ $@ == *"sudo"* ]]; then
+if [ $@ == *"sudo"* ]; then
       app="sudo"
 else
       app=""
