@@ -2,8 +2,11 @@
 # Mining Address **Change Me**
 address = 'bc1qzw7s79eea5ywnmmr4m5c0as2yjtnz8htk0fm5v'
 # Mining Pool **Consider Before Change**
-pool = "solo.ckpool.org"
-port = 3333
+#pool = "solo.ckpool.org"
+
+pool = "sg.ss.cloverpool.com"
+#port = 3333
+port = 1800
 
 import requests
 import socket
