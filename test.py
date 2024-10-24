@@ -231,7 +231,7 @@ async def download_images(image_urls):
         tasks = []
         
         # Initialize the progress bar with the total number of images
-        with tqdm_asyncio(total=len(image_urls), desc="Downloading images",leave=False) as progress_bar:
+        with tqdm_asyncio(total=len(image_urls), desc="Downloading images",leave=False,unit="MB",unit_scale=1) as progress_bar:
             for url in image_urls:
                 tasks.append(download_image(session, url, progress_bar))
             
