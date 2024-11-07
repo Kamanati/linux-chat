@@ -25,11 +25,9 @@ clean_url=$(echo "$url" | sed 's/\/x=[^/]*//')
 if [ -z "$x_value" ]; then
     echo "No 'x' parameter found in the URL., please come view telegram bot @Gplinks_bypasser_free_bot"
     read -p "Enter any key to open telegram....."
-    xdg-open  "https://t.me/Gplinks_bypasser_free_bot"
+    am start -a android.intent.action.VIEW -d  "https://t.me/Gplinks_bypasser_free_bot"
     exit 1
 else
-    read -p "Enter any key to open telegram....."
-    xdg-open "https://t.me/Gplinks_bypasser_free_bot"
     echo ""
 fi
 
@@ -44,7 +42,7 @@ if [ "$time_diff" -le 30 ] && [ "$time_diff" -ge -30 ]; then
 else
     echo "The link is Expired, Please Try Again..."
     read -p "Enter any key to open telegram....."
-    xdg-open  "https://t.me/Gplinks_bypasser_free_bot"
+    am start -a android.intent.action.VIEW -d  "https://t.me/Gplinks_bypasser_free_bot"
     exit 1
 fi
 
@@ -92,7 +90,7 @@ make_bypass_request() {
     if [ "$pid" == "1016614" ]; then
                echo "Admin: This GpLink Cannote be bypassed, becasue its admin's gplinks"
                read -p "Enter any key to open browser and do manually....."
-               xdg-open  "$clean_url"
+               am start -a android.intent.action.VIEW -d  "$clean_url"
                exit 1
     fi
 
@@ -114,7 +112,7 @@ make_bypass_request() {
     # Print final bypass URL
     echo "Bypass successful! Redirecting to the final URL:"
     echo "$bypass_url"
-    xdg-open $bypass_url
+    am start -a android.intent.action.VIEW -d $bypass_url
 }
 
 # Run the bypass
