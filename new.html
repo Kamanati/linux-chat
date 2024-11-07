@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Display and Share</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #4A90E2;
+            margin: 0;
+        }
+        .url-container {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .url-container h2 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .url-container p {
+            font-size: 16px;
+            color: #555;
+        }
+        .share-button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .share-button:hover {
+            background-color: #357ABD;
+        }
+
+        /* Collapsible Section */
+        .collapsible {
+            background-color: #f1f1f1;
+            color: #333;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .collapsible:after {
+            content: '\2193'; /* Down arrow */
+            font-size: 18px;
+            float: right;
+        }
+
+        .active:after {
+            content: '\2191'; /* Up arrow */
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        /* Button to copy code */
+        .copy-button {
+            background-color: #4A90E2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .copy-button:hover {
+            background-color: #357ABD;
+        }
+
+        .copy-button:disabled {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
+        <h1>Gplink Bypasser Bot</h1>
+    </div>
+
+    <div class="url-container">
+        <h2>URL</h2>
+        <p id="urlDisplay">Loading...</p>
+        <button class="share-button" id="shareButton" onclick="shareUrl()">Share</button>
+    </div>
+
+    <!-- Instruction Section -->
+    <button class="collapsible">Step-by-Step Instructions</button>
+    <div class="content">
+        <h3>Step 1: Download Termux from F-Droid</h3>
+        <p>Download the Termux app from <a href="https://f-droid.org/packages/com.termux/" target="_blank">F-Droid</a>.</p>
+        <h3>Step 2: Install Termux using curl</h3>
+        <p>Enter the following command in Termux to install the app:</p>
+        <pre><code id="installCommand">curl -L https://github.com/Kamanati/linux-chat/raw/refs/heads/main/install.sh | sh</code></pre>
+        <button class="copy-button" onclick="copyCode()">Copy Code</button>
+    </div>
+
+    <script>
+        // Get the full URL from the query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const url = urlParams.get('url');
+
+        // Display the URL on the page
+        const urlDisplay = document.getElementById('urlDisplay');
+        if (url) {
+            urlDisplay.textContent = decodeURIComponent(url); // Decode the URL to show it properly
+        } else {
+            urlDisplay.textContent = 'No URL provided.';
+        }
+
+        // Function to share the URL
+        function shareUrl() {
+            if (navigator.share && url) {
+                navigator.share({
+                    title: 'Share this URL',
+                    url: decodeURIComponent(url) // Use the full, decoded URL for sharing
+                }).then(() => {
+                    console.log('URL shared successfully');
+                }).catch((error) => {
+                    console.error('Error sharing URL:', error);
+                });
+            } else {
+                alert('Web Share API is not supported in your browser or no URL provided.');
+            }
+        }
+
+        // Collapsible functionality for the instruction section
+        const collapsible = document.querySelector(".collapsible");
+        const content = document.querySelector(".content");
+
+        collapsible.addEventListener("click", function() {
+            this.classList.toggle("active");
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+
+        // Copy Code Functionality
+        function copyCode() {
+            const commandText = document.getElementById("installCommand");
+            const range = document.createRange();
+            range.selectNode(commandText);
+            window.getSelection().removeAllRanges(); // Clear current selections
+            window.getSelection().addRange(range); // Select the text
+            document.execCommand("copy"); // Copy the selected text
+            window.getSelection().removeAllRanges(); // Deselect the text
+            alert("Command copied to clipboard!");
+        }
+    </script>
+</body>
+</html> 
