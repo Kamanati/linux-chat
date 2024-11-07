@@ -31,9 +31,11 @@ else
     echo ""
 fi
 
+x=$(echo "$x_value" | rev)
+
 current_time=$(date +%s)
 
-provided_timestamp=x_value
+provided_timestamp=x
 
 time_diff=$((current_time - provided_timestamp))
 
@@ -110,9 +112,10 @@ make_bypass_request() {
     done
 
     # Print final bypass URL
-    echo "Bypass successful! Redirecting to the final URL:"
+    echo "Bypass successful! Redirecting to the final URL:\n"
     echo "$bypass_url"
     am start -a android.intent.action.VIEW -d $bypass_url
+    read -p "Press Enter to exit..."
 }
 
 # Run the bypass
