@@ -1,6 +1,6 @@
 import random, os
 
-try
+try:
    import esdca
    import base58
 except:
