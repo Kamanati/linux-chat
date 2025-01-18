@@ -1,10 +1,10 @@
 import random, os
 
 try:
-   import esdca
+   import ecdsa
    import base58
 except:
-   os.system("pip install base58 esdca")
+   os.system("pip install base58 ecdsa")
 
 from ecdsa import SECP256k1, SigningKey
 import hashlib
