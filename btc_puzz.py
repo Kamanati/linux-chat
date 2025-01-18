@@ -57,7 +57,7 @@ def worker_process():
             total_keys.value += 1
             if total_keys.value % 1000 == 0:
                 progress = total_keys.value if end_value - start_value == 0 else (total_keys.value / (end_value - start_value)) * 100
-                print(f"Keys searched: {total_keys.value}, Progress: {progress:.8f}%", end="\r")
+                print(f"Keys searched: {total_keys.value}, Progress: {progress:.14f}%", end="\r")
         if check_private_key(private_key_int):
             return private_key_int
 
