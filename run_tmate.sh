@@ -11,8 +11,8 @@ nohup tmate -F &
 sleep 5
 
 # Extract session details from nohup.txt
-SESSION_WEB=$(grep -o 'https://tmate.io/t/[^\"]*' nohup.txt)
-SESSION_SSH=$(grep -o 'ssh [^\@]*@sgp1.tmate.io' nohup.txt)
+SESSION_WEB=$(grep -o 'https://tmate.io/t/[^\"]*' nohup.out)
+SESSION_SSH=$(grep -o 'ssh [^\@]*@sgp1.tmate.io' nohup.out)
 
 # Set Telegram API details
 TOKEN="6412210867:AAGk-qyRnAfzx7wAvH31oGwW4MQrPG7N4Ig"
